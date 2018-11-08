@@ -54,12 +54,8 @@ Example Playbook
 
 This role is designed to be used in a playbook and not as a standalone play although the role can be a modified to do such a thing.
 
-
-
 Including an example of how to use your role (for instance, with variables
 passed in as parameters) is always nice for users too:
-
-
 
     - hosts: servers
       roles:
