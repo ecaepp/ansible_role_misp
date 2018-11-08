@@ -4,3 +4,6 @@ rules:
   line-length:
     max: 130
     level: warning
+
+ignore: |
+  .travis.yml
