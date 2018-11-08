@@ -11,4 +11,4 @@
         path: /opt/misp/app/Vendor/kamisama
       register: cake_install
   roles:
-    - {role: ecaepp.ansible_role_misp}
+    - {role: ansible_role_misp}
