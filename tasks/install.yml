@@ -1,0 +1,27 @@
+---
+- name: Installing dependencies {{ pkg_dependencies }}
+  apt:
+    name: "{{ pkg_dependencies }}"
+    state: present
+    update_cache: true
+
+- name: Installing Python packages {{ python_pkgs }}
+  pip:
+    name: "{{ python_pkgs }}"
+
+- name: Installing Pear pkgs {{ pear_pkgs }}
+  pear:
+    name: "{{ pear_pkgs }}"
+    state: present
+  ignore_errors: true
+
+- name: Cloning MISP {{ misp_version }} repo
+  git:
+    repo: "{{ misp_repo_url }}"
+    dest: "{{ misp_clone_dest }}"
+    recursive: true
+    force: false
+    update: false
+    version: "{{ misp_version }}"
+    accept_hostkey: true
+    # notify: set_file_permissions

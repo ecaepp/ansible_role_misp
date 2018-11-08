@@ -1,0 +1,7 @@
+---
+- hosts: misp-servers
+  become: true
+  roles:
+    - {ecaepp.ansible_role_misp}
+    - {ecaepp.ansible_role_nginx}
+    - {greelingguy.mysql}

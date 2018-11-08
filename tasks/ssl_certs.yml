@@ -1,0 +1,20 @@
+---
+- name: private key
+  openssl_privatekey:
+    path: "{{ misp_pri_key }}"
+    state: present
+    owner: root
+    group: root
+    mode: 0400
+    type: RSA
+    size: 4096
+
+- name: public key
+  openssl_publickey:
+    path: "{{ misp_cert }}"
+    privatekey_path: "{{ misp_pri_key }}"
+    owner: root
+    group: root
+    mode: 0400
+    format: PEM
+    state: present

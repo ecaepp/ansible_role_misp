@@ -1,0 +1,12 @@
+---
+- name: Download PHP Composer installer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: "{{ misp_clone_dest }}/app/composer-setup.phar"
+  register: composer_installer
+
+- name: Install PHP Composer
+  command: php composer-setup.phar --install-dir={{ composer_install_dir }} --filename={{ composer_bin_name }}
+  args:
+    chdir: "{{ misp_clone_dest }}/app"
+  changed_when: false

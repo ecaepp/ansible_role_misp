@@ -1,0 +1,83 @@
+<?php
+$config = array (
+	'debug' => 0,
+	'Security' =>
+	array (
+		'level' => 'medium',
+		'salt' => 'juFghZsg7128Eeyo<Qu2eeNfterd-dd+',
+		'cipherSeed' => '',
+		//'auth'=>array('CertAuth.Certificate'), // additional authentication methods
+	),
+	'MISP' =>
+	array (
+		'baseurl' => '{{ misp_baseurl }}',
+		'footermidleft' => '{{ misp_footermidleft }}',
+		'footermidright' => '{{ misp_footermidright }}',
+		'org' => '{{ misp_org }}',
+		'showorg' => {{ misp_showorg }},
+		'background_jobs' => {{ misp_background_jobs }},
+		'cached_attachments' => {{ misp_cached_attachments }},
+		'email' => '{{ misp_email }}',
+		'contact' => '{{ misp_contact }}',
+		'cveurl' => '{{ misp_cveurl }}',
+		'disablerestalert' => {{ misp_disablerestalert }},
+		'default_event_distribution' => '{{ misp_default_event_distribution }}',
+		'default_attribute_distribution' => {{ misp_default_attribute_distribution }},
+		'tagging' => {{ misp_tagging }},
+		'full_tags_on_event_index' => {{ misp_full_tags_on_event_index }},
+		'footer_logo' => '{{ misp_footer_logo }}',
+		'take_ownership_xml_import' => {{ misp_take_ownership_xml_import }},
+		'unpublishedprivate' => {{ misp_unpublishedprivate }},
+		'disable_emailing' => {{ misp_disable_emailing }},
+	),
+	'GnuPG' =>
+	array (
+		'onlyencrypted' => {{ gpg_onlyencrypted }},
+		'email' => {{ gpg_email }},
+		'homedir' => '{{ gpg_homedir }}',
+		'password' => {{ gpg_password }},
+		'bodyonlyencrypted' => {{ gpg_bodyonlyencrypted }},
+	),
+	'Proxy' =>
+	array (
+		'host' => '{{ proxy_host }}',
+		'port' => '{{ proxy_port }}',
+		'method' => '{{ proxy_method }}',
+		'user' => '{{ proxy_user }}',
+		'password' => '{{ proxy_password }}',
+	),
+	'SecureAuth' =>
+	array (
+		'amount' => {{ secauth_amount }},
+		'expire' => {{ secauth_expire }},
+	),
+	// Uncomment the following to enable client SSL certificate authentication
+	/*
+	'CertAuth' =>
+	array(
+		'ca'    => array( '{{ cert_auth_ca }}' ), // allowed CAs
+		'caId'          => '{{ cert_auth_caId }}',          // which attribute will be used to verify the CA
+		'userModel'     => '{{ cert_auth_userModel }}',       // name of the User class to check if user exists
+		'userModelKey'  => '{{ cert_auth_userModelKey }}',   // User field that will be used for querying
+		'map'           => array(        // maps client certificate attributes to User properties
+			'O'           => '{{ cert_auth_map_O }}',
+			'emailAddress'=>'{{ cert_auth_emailAddress }}',
+		),
+		'syncUser'      => {{ cert_auth_syncUser }},         // should the User be synchronized with an external REST API
+		'userDefaults'=> array(          // default user attributes, only used when creating new users
+			'role_id'   => {{ cert_auth_role_id }},
+		),
+		'restApi'       => array(        // API parameters
+			'url'         => '{{ cert_auth_restapi_url }}',  // URL to query
+			'headers'     => array({{ cert_auth_restapi_headers }}),  // additional headers, used for authentication
+			'param'       => array({{ cert_auth_restapi_param }}),    // query parameters to add to the URL, mapped to USer properties
+			'map'         =>  array(                            // maps REST result to the User properties
+				'uid'       => '{{ cert_auth_restapi_uid }}',
+				'team'      => '{{ cert_auth_restapi_team }}',
+				'email'     => '{{ cert_auth_restapi_email }}',
+				'pgp_public'=> '{{ cert_auth_restapi_pgp_public }}',
+			),
+		),
+	),
+	*/
+);

@@ -1,0 +1,20 @@
+---
+- name: Install MISP
+  include_tasks: install.yml
+
+- name: Install PHP Composer
+  include_tasks: composer.yml
+  when: 'composer_install.stat.exists == false'
+
+- name: Install Cake-resque
+  include_tasks: cake_resque.yml
+  when: 'cake_install.stat.exists == false'
+
+- name: Create config files from templates
+  include_tasks: configure.yml
+
+- name: Setup MISP worker services
+  include_tasks: misp_worker.yml
+
+- name: Generate SSL certs
+  include_tasks: ssl_certs.yml

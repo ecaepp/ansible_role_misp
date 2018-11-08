@@ -1,0 +1,127 @@
+---
+pkg_dependencies:
+  - zip
+  - curl
+  - git
+  - gcc
+  - make
+  - gnupg-agent
+  - redis-server
+  - php-pear
+  - php-mysql
+  - php-redis
+  - php-all-dev
+  - php-mbstring
+  - python-dev
+  - python-pip
+  - libxml2-dev
+  - libxslt1-dev
+  - zlib1g-dev
+
+python_pkgs:
+  - cybox==2.1.0.7
+  - stix==1.2.0.6
+  - redis
+  - pyzmq
+  - maec
+  - pyOpenSSL
+
+pear_pkgs:
+  - Crypt_GPG
+
+# General MISP Configs
+misp_user: www-data
+misp_group: www-data
+
+misp_repo_url: "https://github.com/MISP/MISP.git"
+misp_clone_dest: /opt/misp
+misp_version: v2.4.96
+python_script_path: /opt/misp/app/files/scripts
+
+misp_dirs:
+  - path: /opt/misp/.gnupg
+    owner: "{{ misp_user }}"
+    group: "{{ misp_group }}"
+    mode: u=rw,g=r,o=
+
+# Database settings
+db_datasrouce: Mysql
+db_presistent: false
+db_host: localhost
+db_username: misp
+db_port: 3306
+db_password:
+db_database: misp
+db_prefix:
+db_encoding:
+
+# OpenSSL Configs
+misp_cert: /etc/ssl/certs/misp.cert.pem
+misp_pri_key: /etc/ssl/private/misp.key.pem
+
+# Composer/Cake-Resque Configs
+composer_install_dir: /usr/local/bin
+composer_bin_name: composer
+cake_version: 4.1.2
+
+# config.php begin
+# MISP
+misp_baseurl: https://misp.test
+misp_footermidleft: ''
+misp_footermidright: ''
+misp_org: ''
+misp_showorg: true
+misp_background_jobs: true
+misp_cached_attachments: true
+misp_email: ''
+misp_contact: ''
+misp_cveurl: http://cve.circl.lu/cve/
+misp_disablerestalert: false
+misp_default_event_distribution: 1
+misp_default_attribute_distribution: event
+misp_tagging: true
+misp_full_tags_on_event_index: true
+misp_footer_logo: ''
+misp_take_ownership_xml_import: false
+misp_unpublishedprivate: false
+misp_disable_emailing: false
+
+# GnuPG
+gpg_onlyencrypted: false
+gpg_email: ''
+gpg_homedir: /opt/misp-server/misp/.gnupg
+gpg_password: ''
+gpg_bodyonlyencrypted: false
+
+# Proxy
+proxy_host: ''
+proxy_port: ''
+proxy_method: ''
+proxy_user: ''
+proxy_password: ''
+
+# SecureAuth
+secauth_amount: 5
+secauth_expire: 300
+
+#  Uncomment the following to enable client SSL certificate authentication
+cert_auth_ca: array( 'FIRST.Org' )  # allowed CAs
+cert_auth_caId: O  # which attribute will be used to verify the CA
+cert_auth_userModel: User  # name of the User class to check if user exists
+cert_auth_userModelKey: nids_sid  # User field that will be used for querying
+cert_auth_map:  # maps client certificate attributes to User properties
+cert_auth_map_O: org
+cert_auth_emailAddress: email
+cert_auth_syncUser: true  # should the User be synchronized with an external REST API
+cert_auth_userDefaults:   # default user attributes, only used when creating new users
+cert_auth_role_id: 4
+cert_auth_restApi:  # API parameters
+cert_auth_restapi_url: https://example.com/data/users  # URL to query
+cert_auth_restapi_headers:  # additional headers, used for authentication
+cert_auth_restapi_param: ["'email' => 'email'"]  # query parameters to add to the URL, mapped to USer properties
+cert_auth_restapi_map:  # maps REST result to the User properties
+cert_auth_restapi_uid: nids_sid
+cert_auth_restapi_team: org
+cert_auth_restapi_email: email
+cert_auth_restapi_pgp_public: gpgkey
+# config.php end

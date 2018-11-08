@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  pre_tasks:
+    - name: Check if PHP Composer is installed
+      stat:
+        path: /usr/local/bin/composer
+      register: composer_install
+    - name: Check if Cake-resque is installed
+      stat:
+        path: /opt/misp/app/Vendor/kamisama
+      register: cake_install
+  roles:
+    - {role: ecaepp.ansible_role_misp}

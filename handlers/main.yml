@@ -1,0 +1,9 @@
+---
+- name: set_file_permissions
+  file:
+    path: "{{ misp_clone_dest }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0744
+    recurse: true

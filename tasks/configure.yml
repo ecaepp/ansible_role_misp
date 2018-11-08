@@ -1,0 +1,37 @@
+---
+- name: Configure Git
+  git_config:
+    name: core.filemode
+    scope: global
+    value: false
+
+- name: Set MISP file ownership
+  file:
+    path: "{{ misp_clone_dest }}"
+    state: directory
+    owner: "{{ misp_user }}"
+    group: "{{ misp_group }}"
+    recurse: true
+
+- name: Create directories for needed for MISP
+  file:
+    path: "{{ item.path }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    state: directory
+    mode: "{{ item.mode }}"
+  with_items:
+    - "{{ misp_dirs }}"
+
+- name: Create config files from templates
+  template:
+    src: templates/{{ item }}.php.j2
+    dest: "{{ misp_clone_dest }}/app/Config/{{ item }}.php"
+    owner: "{{ misp_user }}"
+    group: "{{ misp_group }}"
+    mode: 0644
+  with_items:
+    - bootstrap
+    - config
+    - core
+    - database

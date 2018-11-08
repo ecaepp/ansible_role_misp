@@ -1,0 +1,21 @@
+---
+- name: Install Cake-resque
+  composer:
+    command: "{{ item.command }}"
+    arguments: "{{ item.args }}"
+    working_dir: "{{ item.dir }}"
+  changed_when: false
+  with_items:
+    - {'command': 'require', 'args': 'kamisama/cake-resque:{{ cake_version }}', 'dir': '{{ misp_clone_dest }}/app'}
+    - {'command': 'config', 'args': 'vendor-dir Vendor', 'dir': '{{ misp_clone_dest }}/app'}
+    - {'command': 'install', 'args': '', 'dir': '{{ misp_clone_dest }}/app'}
+
+- name: Copy Cake config file
+  copy:
+    remote_src: true
+    src: "{{ misp_clone_dest }}/INSTALL/setup/config.php"
+    dest: "{{ misp_clone_dest }}/app/Plugin/CakeResque/Config/config.php"
+    force: true
+    owner: "{{ misp_user }}"
+    group: "{{ misp_group }}"
+    mode: 0644

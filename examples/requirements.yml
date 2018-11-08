@@ -1,0 +1,6 @@
+---
+- src: ecaepp.ansible_role_nginx
+  version: "1.1.5-alpha"
+- src: ecaepp.ansible_role_misp
+- src: greerlingguy.mysql
+  version: "2.9.4"
