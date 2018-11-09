@@ -18,13 +18,15 @@ script: molecule test
 after_success:
   deploy:
     provider: releases
+    skip_cleanup: true
     api_key:
       secure: $GITHUB_API_TOKEN
-    file: nginx
+    file: ansible_role_$ROLE_NAME
     on:
       repo: ecaepp/ansible_role_$ROLE_NAME
       branch: master
       tags: true
 
-  notifications:
-    webhooks: https://galaxy.ansible.com/api/v1/notifications/
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  on_success: always
