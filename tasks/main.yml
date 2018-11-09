@@ -1,4 +1,7 @@
 ---
+- name: Running Pre Tasks
+  include_tasks: pre_tasks.yml
+
 - name: Install MISP
   include_tasks: install.yml
 
